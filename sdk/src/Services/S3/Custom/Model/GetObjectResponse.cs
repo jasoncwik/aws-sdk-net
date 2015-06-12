@@ -446,6 +446,9 @@ namespace Amazon.S3.Model
             if (stream!=null)
                return;
 #endif
+            // For ECS 1.1, ignore chunked encoding response
+            if (this.ContentLength == -1) return;
+
             if (bytesWritten != this.ContentLength)
             {
                 string amzId2;                
